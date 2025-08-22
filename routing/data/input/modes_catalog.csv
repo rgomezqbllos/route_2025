@@ -1,0 +1,11 @@
+mode,capacity_per_vehicle,notes
+bus,40,Generic bus (fallback)
+bus:brt,120,BRT high-capacity bus
+bus:buseton,40,Regular bus
+bus:buseta,35,Smaller bus (buseta)
+bus:microbus,20,Microbus
+bus:padron_dual,50,Special dual-door bus
+train,200,Train capacity
+metro,200,Metro capacity
+a_pie,1,Walking as access mode
+bici,1,Bike as access mode

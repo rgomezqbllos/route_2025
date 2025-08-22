@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+.eggs/
+
+# virtualenv
+.venv/
+venv/
+ENV/
+env/
+
+# VSCode
+.vscode/
+
+# Data outputs and logs
+routing/data/outputs/
+routing/data/output/
+*/outputs/
+*/logs/
+
+# macOS
+.DS_Store
+
+# pytest cache
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
