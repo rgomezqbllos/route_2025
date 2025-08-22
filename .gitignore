@@ -21,6 +21,11 @@ routing/data/output/
 */outputs/
 */logs/
 
+# Do not commit input CSVs with sensitive or large data
+# keep local raw inputs out of the repo
+routing/data/input/*.csv
+data/input/*.csv
+
 # macOS
 .DS_Store
 
