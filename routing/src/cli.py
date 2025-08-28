@@ -36,7 +36,10 @@ def run(base_path: str, transfer_penalty: float = 1.0, walk_km_factor: float = 0
         # inventariar_ramales_multimodo expects DataFrames; reuse load_inputs_all
         tiempos_df, paradas_df, issues = load_inputs_all(os.path.join(input_dir, 'tiempos_reco.csv'), os.path.join(input_dir, 'paradas.csv'))
         out_prefix = os.path.join(outputs, 'ramales')
-        sum_csv, sto_csv, arc_csv, paradas_ann = inventariar_ramales_multimodo(tiempos_df, paradas_df, prefix_out=out_prefix)
+        # Convert DataFrames to list of dicts as expected by the function
+        tiempos_list = tiempos_df.to_dict('records')
+        paradas_list = paradas_df.to_dict('records')
+        sum_csv, sto_csv, arc_csv, paradas_ann = inventariar_ramales_multimodo(paradas_list, tiempos_list, out_prefix)
 
         # convert summary+stops to troncales list expected by Network.export_red
         troncales = []
