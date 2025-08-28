@@ -1,1 +1,5 @@
-# Uses only Python standard library; tested with Python 3.8+
+# Project requirements
+# Additional packages required by the optional ramales inventory algorithm
+pandas>=1.5.0
+numpy>=1.24.0
+psutil>=5.9.0

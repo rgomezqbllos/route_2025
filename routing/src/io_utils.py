@@ -14,6 +14,10 @@ def read_csv(path: str) -> List[Dict[str, Any]]:
     with open(path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         rows = []
+        # if the CSV file mistakenly contains repeated header rows (common when
+        # concatenating files), skip those rows so header strings aren't treated
+        # as data (which causes parse errors like trying to parse 'start_time').
+        first_field = reader.fieldnames[0].strip().lstrip('\ufeff') if reader.fieldnames else None
         for r in reader:
             # normalize keys (strip BOM and whitespace)
             nr = {}
@@ -22,6 +26,11 @@ def read_csv(path: str) -> List[Dict[str, Any]]:
                     continue
                 nk = k.strip().lstrip('\ufeff')
                 nr[nk] = v
+            # detect and skip repeated header rows: if the first column's value
+            # equals the first header name, it's almost certainly a header row
+            if first_field and str(r.get(reader.fieldnames[0])).strip() == first_field:
+                # skip this row
+                continue
             rows.append(nr)
     return rows
 
