@@ -74,6 +74,8 @@ def read_usuarios(path: str) -> List[Dict[str, Any]]:
         r['dest_lat'] = float(r.get('dest_lat'))
         r['dest_lon'] = float(r.get('dest_lon'))
         r['depart_time'] = parse_time(r.get('depart_time')) if r.get('depart_time') else None
+        # propagate user's day_type if provided (None means accept any)
+        r['day_type'] = r.get('day_type') or None
         r['arrival_pref'] = r.get('arrival_pref')
         # max_transfers
         try:
